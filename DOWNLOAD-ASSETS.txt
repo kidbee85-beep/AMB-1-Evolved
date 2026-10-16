@@ -1,0 +1,3 @@
+Die Firmwarepakete, Hörbeispiele und das Vorstellungsvideo liegen auf der Projektwebsite.
+Für eine vollständige lokale Website: python3 tools/fetch_site_assets.py
+Die Firmwarequellen und Lizenzhinweise sind vollständig im Archiv enthalten.
