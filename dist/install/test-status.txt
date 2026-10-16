@@ -1,0 +1,43 @@
+AKTUALISIERUNG 17.10.2026 — GERAETE-RUECKMELDUNG
+Der Projektinhaber meldete nach eigener Nutzung: „Funktioniert hervorragend.“
+Damit liegt eine erfolgreiche Nutzer-Erprobung von E1 am FM-1 vor. Einzelne
+Funktionen, Testdauer und elektrische Lastmessungen wurden nicht separat
+protokolliert. Keine allgemeine fehlerfreie Hardwarefreigabe.
+Firmwaredatei, Kennung und SHA-256 sind gegenüber dem ursprünglichen E1-Build
+unverändert. Die folgenden Angaben sind der historische Build-/Hosttestbericht;
+seine Aussagen „noch nicht am Gerät“ beschreiben den damaligen Stand.
+
+--- URSPRUENGLICHER TESTBERICHT ---
+
+AMB-1 EVOLVED E1 — 17.10.2026
+Eigenständiges Projekt, aus Bunkai Wolf A1 / AMB-1 / Felucca abgeleitet.
+Identität FM-1_7080001
+SHA256 61755b43e6dad1080b0db84aad36972116be703fdf4ff910c5b2c8c1b4546e5b
+
+UMFANG
+64 Sounds: 16 Pad-, 16 Melodie-, 16 Bass- und 16 Puls-Presets.
+32 Themen: acht bekannte AMB-1-Rezepte plus 24 neue. 20 Skalen, fünf vorhandene Generatorvarianten. Sieben AMB-1-Seiten und Bunkai-Wolf-A1-Palette/Animation. Keine Wolf-A2/A3-Editorseiten.
+Melodie: FM-Modulatorverhältnis, Index und Abklingzeit plus bestehende Klangregler. Pad: FM-Farbe / Formantlage und bestehende Hüllkurven-/Helligkeitswerte. Bass: Sub-/Obertonmischung und Register/Glide/Fifth. Puls: Kick-Tonlage, Abklingzeiten, Metallanteil und Rhythmuswerte. Keine Samples und keine 64 unabhängigen Syntheseverfahren.
+Die vier neuen Patch-Indizes sind echte gespeicherte DSP-Parameter. Layer-Taste halten + PRESETS wählt sie und ihre Rezepte. PRESETS allein wählt das Thema. SAVE speichert alle Themenzustände. Der Name auf einer Layer-Seite zeigt das gewählte Grundpreset; manuelle Regleränderungen bleiben möglich.
+
+TESTS
+22 Host-/Szenario-/Loader-/Paket-Testgruppen bestanden. UI-Szenario prüft alle vier Patch-Indizes, Speichern/Neustart und Rückkehr zu einem bearbeiteten Thema nach Umlauf durch alle 32 Themen.
+64 voneinander verschiedene, nicht stumme PCM-Ergebnisse in isolierten Ebenen. Alle 32 Themen erzeugen unterschiedliche, nicht stumme Ausgaben. Parameter- und Samplegrenzen geprüft. Vier 64-Sekunden-Hördateien enthalten je 16 echte C-DSP-Ausschnitte.
+Stresstest: 3604.90 simulierte Sekunden, 158976000 Frames, MIDI 193203, Peak 8194017. Parameterextreme inklusive neuer Patch-Indizes, 20 Skalen, Generatorwechsel, Befehlsflut, Stop/Start, Clock-Wechsel, Pufferschutz.
+ASan/UBSan: 1201.63 simulierte Sekunden, 52992000 Frames, MIDI 64281, Peak 8074505. Keine gemeldeten Speicher-/Undefined-Behavior-Fehler. Leak-Prüfung wegen Runner deaktiviert; DSP verwendet feste Puffer.
+Installer-Protokoll und DOM-Prüfung bestanden (simuliertes Gerät). Bibliotheks-DOM-Prüfung: alle 64 Ausschnitte, Ebenenwechsel, Stop-Grenzen, 32 Themen. Mock Audio, keine reale Browser-Audioprüfung.
+C-Displaybilder erzeugt und visuell geprüft. Dabei falsche verzögerte Soundbeschriftung korrigiert; aktuelle Seite/Patch in Anzeigezustand einbezogen, Szenario erneut bestanden.
+Abschliessender Build: 122960 Bytes; RAM .data+.bss 54928/98304, separater Pool 331944/344064 Bytes. OTA-Loader 6510 Bytes. HAL-Registergrenzen, keine Software-Double-Routinen, RAM-Flashcode geprüft.
+
+SPEICHER / RUECKKEHR
+Eigenes Magic EOV1 und Format 100. AMB-/Wolf-Projekte werden bewusst nicht importiert; bei Erststart laden Evolved-Standards. Speichern verwendet denselben Projektbereich und ersetzt dort frühere Daten. Kalibrierungslogik unverändert. Rückkehr zu AMB-1 oder zur Herstellerfirmware über Installer möglich, ist kein Datenbackup. Es kann jeweils nur eine Firmware laufen.
+
+SCHUTZ / LIMITS
+A1-Watchdog, Speicherzugriffsschutz, Safe Mode und Audio-Deadline-Schutz erhalten. Keine garantierte Rettung bei Stromverlust beim Flashen. Noch nicht auf einem echten FM-1 geflasht oder unter Last gemessen. Host-Stresstestdauer ist simulierte Audiozeit, keine Hardwarefreigabe.
+Chrome-Sicht-/Audioprüfung nicht möglich: sites-preview scheitert an 'bwrap: Can't mount proc on /newroot/proc: Operation not permitted'. Kein Umgehungsserver verwendet. Kein Fernzugriff auf den Mac oder den angeschlossenen FM-1.
+
+BUILD WIEDERHOLEN
+Im Unterordner firmware: JIELI_TOOLCHAIN=<JieLi toolchain> AC79_SDK=<AC79 SDK> bash build.sh
+Tests: AC79_SDK=<SDK> bash tests/run_tests.sh
+Audioprüfung: cc -O2 -ffp-contract=off -DEN_HOST -Ifirmware/src/dsp tests/host/evolved_audio.c firmware/src/dsp/amb.c -lm -o build/host/evolved_audio; python3 tests/evolved_audio_test.py
+Stresstest: bash tests/run_wolf_stress.sh (geerbter Dateiname, prüft Evolved-Quellcode).

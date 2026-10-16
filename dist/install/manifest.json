@@ -1,0 +1,12 @@
+{
+  "wolf": {
+    "file": "amb1-evolved-e1.fwsc",
+    "product": "FM-1_7080001",
+    "sha256": "61755b43e6dad1080b0db84aad36972116be703fdf4ff910c5b2c8c1b4546e5b"
+  },
+  "amb": {
+    "file": "amb-1.2.fwsc",
+    "product": "FM-1_7010200",
+    "sha256": "7372e07e845bfad8ec3797963b4312563addc6451dae35bdadc0ba92b73875d0"
+  }
+}
