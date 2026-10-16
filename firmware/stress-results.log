@@ -1,0 +1,18 @@
+progress 300 seconds, peak 8012489
+progress 600 seconds, peak 8012489
+progress 900 seconds, peak 8074505
+progress 1200 seconds, peak 8074505
+progress 1500 seconds, peak 8074505
+progress 1800 seconds, peak 8074505
+progress 2100 seconds, peak 8074505
+progress 2400 seconds, peak 8074505
+progress 2700 seconds, peak 8156614
+progress 3000 seconds, peak 8194017
+progress 3300 seconds, peak 8194017
+progress 3600 seconds, peak 8194017
+PASS Wolf stress: 158976000 frames, 3604.90 simulated seconds, MIDI 193203, peak 8194017; extremes, queue floods, freeze, stop/start, regrow, clock transitions, buffer guards.
+progress 300 seconds, peak 8012489
+progress 600 seconds, peak 8012489
+progress 900 seconds, peak 8074505
+progress 1200 seconds, peak 8074505
+PASS Wolf stress: 52992000 frames, 1201.63 simulated seconds, MIDI 64281, peak 8074505; extremes, queue floods, freeze, stop/start, regrow, clock transitions, buffer guards.
