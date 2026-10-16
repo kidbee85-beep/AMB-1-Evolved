@@ -1,0 +1,14 @@
+# Independent instrument rejects the foreign AMB-1 project layout.
+wait 300
+turn PRESET 4
+storev3 33
+reboot
+wait 300
+expect piece 0
+expect par0 60
+expect par28 0
+tap SAVE
+reboot
+wait 300
+expect piece 0
+expect par0 60

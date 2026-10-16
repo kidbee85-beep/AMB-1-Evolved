@@ -1,0 +1,51 @@
+wait 500
+press ENV
+turn PRESET 15
+release ENV
+expect par28 15
+press ARP
+turn PRESET 10
+release ARP
+expect par29 10
+press LFO
+turn PRESET 14
+release LFO
+expect par30 14
+press SEQ
+turn PRESET 12
+release SEQ
+expect par31 12
+tap SAVE
+reboot
+wait 500
+expect par28 15
+expect par29 10
+expect par30 14
+expect par31 12
+tap ENV
+wait 120
+shot evolved-pad.png
+tap ARP
+wait 120
+shot evolved-melody.png
+tap LFO
+wait 120
+shot evolved-bass.png
+tap SEQ
+wait 120
+shot evolved-pulse.png
+tap HOME
+turn PRESET 31
+expect piece 31
+tap SAVE
+reboot
+wait 500
+expect piece 31
+wait 120
+shot evolved-home.png
+turn PRESET 1
+expect piece 0
+expect par28 15
+expect par29 10
+expect par30 14
+expect par31 12

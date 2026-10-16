@@ -1,0 +1,26 @@
+wait 500
+expect genmode 0
+press HOME
+turn ALGO 1
+release HOME
+wait 100
+expect genmode 1
+expect par20 1
+tap SAVE
+reboot
+wait 500
+expect genmode 1
+turn ALGO 18
+expect par20 19
+wait 3000
+press HOME
+turn ALGO 3
+release HOME
+wait 100
+expect genmode 4
+wav bunka-03.wav
+wait 15000
+wavstop
+expect peak_db_min -50
+expect peak_db_max -0.1
+shot bunka-03.png

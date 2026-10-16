@@ -1,0 +1,37 @@
+# New layer preset gesture must not change whole piece.
+wait 500
+press ENV
+turn PRESET 1
+release ENV
+expect piece 0
+expect par22 1
+expect par13 90
+expect par12 25
+press ARP
+turn PRESET 1
+release ARP
+expect piece 0
+expect par14 90
+expect par4 50
+press LFO
+turn PRESET 1
+release LFO
+expect par24 85
+press SEQ
+turn PRESET 1
+release SEQ
+expect par26 65
+expect par27 15
+tap SAVE
+reboot
+wait 500
+expect par22 1
+expect par14 90
+expect par24 85
+expect par26 65
+wav bunka-preset-demo.wav
+wait 30000
+wavstop
+expect peak_db_min -50
+expect peak_db_max -0.1
+shot bunka.png
